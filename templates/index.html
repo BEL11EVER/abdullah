@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0" />
+  <title>জিশান - ইইই হেল্প</title>
+  <style>
+    /* General Reset & Box Sizing */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #ff6f61;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      max-width: 900px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .output-area {
+      width: 100%;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      padding: 15px;
+      /* No scrollbars, let container expand with content */
+    }
+
+    /* We replaced <pre> with a <div> to wrap lines properly */
+    .response-text {
+      white-space: pre-wrap;   /* Preserve line breaks, wrap long lines */
+      word-wrap: break-word;   /* Break long words if necessary */
+      overflow: visible;       /* Expand container, no scrollbars */
+    }
+
+    .chatbox {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chatbox textarea {
+      width: 100%;
+      font-size: 1.1rem;
+      padding: 15px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      resize: vertical; /* Let users expand input vertically */
+      transition: border-color 0.3s ease-in-out;
+      min-height: 80px;
+      margin-bottom: 10px;
+    }
+
+    .chatbox textarea:focus {
+      border-color: #ff6f61;
+      outline: none;
+    }
+
+    .chatbox button[type="submit"] {
+      align-self: flex-end;
+      font-size: 1rem;
+      background: linear-gradient(135deg, #ff6f61, #ff9a8b);
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .chatbox button[type="submit"]:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .container {
+        width: 95%;
+      }
+
+      .output-area {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>জিশান - ইইই হেল্প</h1>
+  <div class="container">
+    <!-- Output Area -->
+    <div class="output-area">
+      {% if response %}
+        <div class="response-text">{{ response }}</div>
+      {% else %}
+        <p>স্বাগতম! আপনার প্রশ্নটি লিখুন...</p>
+      {% endif %}
+    </div>
+
+    <!-- Chatbox for Input -->
+    <div class="chatbox">
+      <form method="POST">
+        <textarea
+          name="user_input"
+          rows="3"
+          placeholder="আপনার প্রশ্ন লিখুন..."
+        ></textarea>
+        <button type="submit">জিজ্ঞাসা করুন</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
